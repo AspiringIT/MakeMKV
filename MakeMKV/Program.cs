@@ -46,7 +46,7 @@ namespace MakeMKV
                 var ForceUpdate = args.Any(m => m.ToLower() == "/force") || Settings.VersionChanged();
                 var KeyDate = ForceUpdate ? DateTime.MinValue : Settings.InstalledKeyExpiration();
                 //Only try to update the key if it actually expired
-                if (KeyDate < DateTime.UtcNow)
+                if (KeyDate < || > DateTime.UtcNow)
                 {
                     var K = GetKey();
                     if (!string.IsNullOrEmpty(K.key))
